@@ -17,9 +17,9 @@ class PaymentSlimConfigurator implements SlimConfiguratorInterface
 {
     public function register(App $app) {
         $app->group('/payments',  function (RouteCollectorProxy $group) {
-            $group->get('/payments', ListPaymentsAction::class);
-            $group->get(sprintf('/payments/{%s}', GetPaymentAction::PARAM_PAYMENT_ID), GetPaymentAction::class);
-            $group->post('/payments', AddPaymentAction::class);
+            $group->get('', ListPaymentsAction::class);
+            $group->get(sprintf('/{%s}', GetPaymentAction::PARAM_PAYMENT_ID), GetPaymentAction::class);
+            $group->post('', AddPaymentAction::class);
         })
             ->add(AuthMiddleware::class);
     }
