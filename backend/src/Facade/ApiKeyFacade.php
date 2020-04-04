@@ -9,6 +9,6 @@ class ApiKeyFacade
 
         // todo implement real authentication solution
 
-        return "1";
+        return md5($apiKey);
     }
 }
