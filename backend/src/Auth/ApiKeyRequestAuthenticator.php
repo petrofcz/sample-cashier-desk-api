@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Common;
+namespace App\Auth;
 
 use App\Facade\ApiKeyFacade;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,10 +13,6 @@ class ApiKeyRequestAuthenticator implements RequestAuthenticatorInterface
     /** @var ApiKeyFacade */
     protected $apiKeyFacade;
 
-    /**
-     * ApiKeyRequestAuthenticator constructor.
-     * @param ApiKeyFacade $apiKeyFacade
-     */
     public function __construct(ApiKeyFacade $apiKeyFacade)
     {
         $this->apiKeyFacade = $apiKeyFacade;

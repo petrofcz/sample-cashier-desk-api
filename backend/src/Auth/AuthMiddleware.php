@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Auth;
 
 use App\Common\CommonResponseFactory;
-use App\Common\RequestAuthenticatorInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
