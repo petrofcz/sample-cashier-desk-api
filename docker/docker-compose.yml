@@ -1,0 +1,52 @@
+version: "3.7"
+services:
+  php:
+    build:
+      context: './php/'
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+    networks:
+      - backend
+    volumes:
+      - ${APP_ROOT}/:/var/www/
+    container_name: php
+
+  apache:
+    build:
+      context: './apache/'
+      args:
+        APACHE_VERSION: ${APACHE_VERSION}
+    depends_on:
+      - php
+      - mongo
+    networks:
+      - frontend
+      - backend
+    ports:
+      - "80:80"
+    volumes:
+      - ${APP_ROOT}/public/:/var/www/public/
+    container_name: apache
+
+  mongo:
+    image: "mongo:${MONGO_VERSION}-bionic"
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
+        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    networks:
+      - backend
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ADMIN_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ADMIN_PASSWORD}
+    networks:
+      - backend
+      - frontend
+
+networks:
+  frontend:
+  backend:
