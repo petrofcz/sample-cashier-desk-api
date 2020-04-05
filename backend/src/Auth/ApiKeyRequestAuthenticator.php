@@ -3,17 +3,17 @@ declare(strict_types=1);
 
 namespace App\Auth;
 
-use App\Facade\ApiKeyFacade;
+use App\Repository\ApiKeyRepository;
 use Psr\Http\Message\ServerRequestInterface;
 
 class ApiKeyRequestAuthenticator implements RequestAuthenticatorInterface
 {
     const API_KEY_HEADER_NAME = 'X-API-KEY';
 
-    /** @var ApiKeyFacade */
+    /** @var ApiKeyRepository */
     protected $apiKeyFacade;
 
-    public function __construct(ApiKeyFacade $apiKeyFacade)
+    public function __construct(ApiKeyRepository $apiKeyFacade)
     {
         $this->apiKeyFacade = $apiKeyFacade;
     }

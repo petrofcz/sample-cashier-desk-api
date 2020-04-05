@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Facade;
+namespace App\Repository;
 
-class ApiKeyFacade
+class ApiKeyRepository
 {
     public function getClientIdByApiKey(string $apiKey): ?string {
 

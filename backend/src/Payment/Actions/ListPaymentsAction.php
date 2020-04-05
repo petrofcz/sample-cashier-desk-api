@@ -7,7 +7,7 @@ use App\Auth\AuthMiddleware;
 use App\Common\CommonResponseFactory;
 use App\Common\ResponseHelper;
 use App\Common\SlimActionHandlerInterface;
-use App\Facade\PaymentsFacade;
+use App\Repository\PaymentsRepository;
 use App\Payment\Mapping\PaymentMapper;
 use App\Payment\Model\Payment;
 use Psr\Http\Message\ResponseInterface;
@@ -17,14 +17,14 @@ class ListPaymentsAction implements SlimActionHandlerInterface
 {
     const PARAM_FROM_TIME = 'fromTime';
 
-    /** @var PaymentsFacade */
+    /** @var PaymentsRepository */
     protected $paymentsFacade;
 
     /** @var PaymentMapper */
     protected $paymentMapper;
 
 
-    public function __construct(PaymentsFacade $paymentsFacade, PaymentMapper $paymentMapper)
+    public function __construct(PaymentsRepository $paymentsFacade, PaymentMapper $paymentMapper)
     {
         $this->paymentsFacade = $paymentsFacade;
         $this->paymentMapper = $paymentMapper;
@@ -49,7 +49,7 @@ class ListPaymentsAction implements SlimActionHandlerInterface
         $payments = $this->paymentsFacade->getPayments($clientId, $fromTime);
 
         $data = array_map(function(Payment $payment) {
-            $this->paymentMapper->createDataFromEntity($payment);
+            return $this->paymentMapper->createDataFromEntity($payment);
         }, $payments);
 
         return ResponseHelper::withJSONPayload($response, $data);

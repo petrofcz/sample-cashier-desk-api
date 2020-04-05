@@ -106,4 +106,12 @@ class Payment {
         return $this->savedDateTime;
     }
 
+    public function sameAs(self $instance): bool {
+        return
+            $this->id === $instance->id &&
+            $this->currency === $instance->currency &&
+            $this->amount === $instance->amount &&
+            $this->dateTime->getTimestamp() === $instance->dateTime->getTimestamp()
+            ;
+    }
 }
