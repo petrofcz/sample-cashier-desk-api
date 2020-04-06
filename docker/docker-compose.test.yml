@@ -13,7 +13,7 @@ services:
     logging:
       driver: none
   swagger:
-    image: 'havetisy/noop-run'    # disable swagger
+    image: 'csweichel/noop' #'havetisy/noop-run'    # disable swagger
   client:
     build:
       context: ../

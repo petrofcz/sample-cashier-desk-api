@@ -15,5 +15,5 @@ clean:		## 		Clear everything
 	docker-compose -f $(DC_BASE) -f docker/docker-compose.dev.yml rm -fsv
 	docker-compose -f $(DC_BASE) -f docker/docker-compose.dist.yml rm -fs
 prod-build:
-	docker build ./docker/dev/php-fpm -t dev-php-fpm
-	docker build ./docker/dev/apache -t dev-apache
+	docker build . -f docker/dev/php-fpm/Dockerfile -t dev-php-fpm
+	docker build . -f docker/dev/apache/Dockerfile -t dev-apache
