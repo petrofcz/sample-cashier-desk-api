@@ -1,0 +1,4 @@
+modules:
+  config:
+    REST:
+      url: http://localhost/api/v1
