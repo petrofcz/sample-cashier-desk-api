@@ -12,8 +12,7 @@ use App\Payment\Model\PaymentIdValidator;
  */
 class PaymentMapper
 {
-    /** @var PaymentIdValidator */
-    protected $paymentIdValidator;
+    protected PaymentIdValidator $paymentIdValidator;
 
     public function __construct(PaymentIdValidator $paymentIdValidator)
     {

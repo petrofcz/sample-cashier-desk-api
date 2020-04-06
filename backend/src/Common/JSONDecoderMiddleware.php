@@ -9,12 +9,14 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Middleware class for validating and decoding JSON content
+ */
 class JSONDecoderMiddleware implements MiddlewareInterface
 {
     const ATTR_INPUT_DATA = 'inputData';
 
-    /** @var ResponseFactoryInterface */
-    protected $responseFactory;
+    protected ResponseFactoryInterface $responseFactory;
 
     public function __construct(ResponseFactoryInterface $responseFactory)
     {

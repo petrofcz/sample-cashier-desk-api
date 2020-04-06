@@ -23,10 +23,11 @@ return [
     // Api version
     'api.version'   =>  1,
 
-    // Register mongo constants
+    // Mongo constants
     'mongo.url' =>  DI\env(ENV_MONGO_URL, '127.0.0.1'),
     'mongo.database' =>  DI\env(ENV_MONGO_DATABASE, 'cashierDesk'),
 
+    // Other settings
     'debug' => DI\env(ENV_DEBUG, false),
 
     // Mongo client factory
@@ -34,8 +35,7 @@ return [
         $client = new MongoDB\Client(
             $container->get('mongo.url')
         );
-        $database = $client->selectDatabase($container->get('mongo.database'));
-        return $database;
+        return $client->selectDatabase($container->get('mongo.database'));
     },
 
     // App factory

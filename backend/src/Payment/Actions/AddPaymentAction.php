@@ -15,11 +15,9 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class AddPaymentAction implements SlimActionHandlerInterface
 {
-    /** @var PaymentsRepository */
-    protected $paymentsRepository;
+    protected PaymentsRepository $paymentsRepository;
 
-    /** @var PaymentMapper */
-    protected $paymentMapper;
+    protected PaymentMapper $paymentMapper;
 
     public function __construct(PaymentsRepository $paymentsRepository, PaymentMapper $paymentMapper)
     {
@@ -43,6 +41,7 @@ class AddPaymentAction implements SlimActionHandlerInterface
         }
 
         // Add location header
+        // 'X-Location' is a workaround. When 'Location' header was sent, 409 http status code was ignored.
         $response = $response->withHeader('X-Location', $request->getUri() . '/' . $payment->getId());
 
         // Check if payment already exists

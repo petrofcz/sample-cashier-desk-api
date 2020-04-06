@@ -10,12 +10,11 @@ class ApiKeyRequestAuthenticator implements RequestAuthenticatorInterface
 {
     const API_KEY_HEADER_NAME = 'X-API-KEY';
 
-    /** @var ApiKeyRepository */
-    protected $apiKeyFacade;
+    protected ApiKeyRepository $apiKeyRepository;
 
     public function __construct(ApiKeyRepository $apiKeyFacade)
     {
-        $this->apiKeyFacade = $apiKeyFacade;
+        $this->apiKeyRepository = $apiKeyFacade;
     }
 
     public function authenticate(ServerRequestInterface $request): ?string {
@@ -24,7 +23,7 @@ class ApiKeyRequestAuthenticator implements RequestAuthenticatorInterface
             if(count($headers) > 1) {
                 return null;
             }
-            return $this->apiKeyFacade->getClientIdByApiKey(array_shift($headers));
+            return $this->apiKeyRepository->getClientIdByApiKey(array_shift($headers));
         }
         return null;
     }

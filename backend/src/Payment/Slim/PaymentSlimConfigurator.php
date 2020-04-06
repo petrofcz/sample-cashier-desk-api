@@ -11,7 +11,7 @@ use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 
 /**
- * This class set up routes for Slim app to accept payment-related REST API requests.
+ * Class to configure Slim app routes to accept payment-related REST API requests.
  */
 class PaymentSlimConfigurator implements SlimConfiguratorInterface
 {

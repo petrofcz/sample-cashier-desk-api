@@ -8,10 +8,10 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/** Middleware class for logging requests and responses. */
 class TrafficLogMiddleware implements MiddlewareInterface
 {
-    /** @var TrafficLoggerInterface */
-    protected $logger;
+    protected TrafficLoggerInterface $logger;
 
     /**
      * TrafficLogMiddleware constructor.

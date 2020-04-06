@@ -10,7 +10,7 @@ use DI\ContainerBuilder;
 class ContainerFactory
 {
     /** @var callable[] Args: [ContainerBuilder $builder] */
-    protected $containerBuilderCallbacks = [];
+    protected array $containerBuilderCallbacks = [];
 
     /**
      * ContainerFactory constructor.

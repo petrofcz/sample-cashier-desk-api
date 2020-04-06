@@ -10,15 +10,16 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Middleware class for authentication of requests
+ */
 class AuthMiddleware implements MiddlewareInterface
 {
     const ATTR_CLIENT_ID = 'clientId';
 
-    /** @var RequestAuthenticatorInterface */
-    protected $requestAuthenticator;
+    protected RequestAuthenticatorInterface $requestAuthenticator;
 
-    /** @var ResponseFactoryInterface */
-    protected $responseFactory;
+    protected ResponseFactoryInterface $responseFactory;
 
     public function __construct(RequestAuthenticatorInterface $requestAuthenticator, ResponseFactoryInterface $responseFactory)
     {

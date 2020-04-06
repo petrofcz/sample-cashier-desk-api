@@ -17,14 +17,11 @@ class GetPaymentAction implements SlimActionHandlerInterface
 {
 	const PARAM_PAYMENT_ID = 'id';
 
-	/** @var PaymentsRepository */
-	protected $paymentsFacade;
+	protected PaymentsRepository $paymentsFacade;
 
-	/** @var PaymentMapper */
-	protected $paymentMapper;
+	protected PaymentMapper $paymentMapper;
 
-	/** @var PaymentIdValidator */
-	protected $paymentIdValidator;
+	protected PaymentIdValidator $paymentIdValidator;
 
 	public function __construct(PaymentsRepository $paymentsFacade, PaymentMapper $paymentMapper, PaymentIdValidator $paymentIdValidator)
 	{

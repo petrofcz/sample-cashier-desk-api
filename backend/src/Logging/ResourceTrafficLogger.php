@@ -15,7 +15,7 @@ class ResourceTrafficLogger implements TrafficLoggerInterface
     /** @var resource STDOUT, file handle, .. */
     private $resource;
 
-    private $datetimeFormat = 'j.n.Y H:i:s';
+    private string $datetimeFormat = 'j.n.Y H:i:s';
 
     public function __construct($resource)
     {

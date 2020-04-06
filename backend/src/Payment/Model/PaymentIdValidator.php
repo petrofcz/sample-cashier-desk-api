@@ -7,8 +7,7 @@ use Ramsey\Uuid\Validator\GenericValidator;
 
 class PaymentIdValidator
 {
-    /** @var GenericValidator */
-    protected $uuidValidator;
+    protected GenericValidator $uuidValidator;
 
     /**
      * PaymentIdValidator constructor.

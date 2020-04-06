@@ -12,8 +12,7 @@ class PaymentsRepository
 {
     const COLLECTION = 'payments';
 
-    /** @var Collection */
-    protected $collection;
+    protected Collection $collection;
 
     public function __construct(Database $database)
     {

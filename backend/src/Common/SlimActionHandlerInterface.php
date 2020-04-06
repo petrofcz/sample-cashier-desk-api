@@ -7,7 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
- * This is a base interface for Slim action handlers.
+ * Interface for Slim action handlers.
  */
 interface SlimActionHandlerInterface
 {

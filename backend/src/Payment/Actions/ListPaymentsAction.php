@@ -17,11 +17,9 @@ class ListPaymentsAction implements SlimActionHandlerInterface
 {
     const PARAM_FROM_TIME = 'fromTime';
 
-    /** @var PaymentsRepository */
-    protected $paymentsFacade;
+    protected PaymentsRepository $paymentsFacade;
 
-    /** @var PaymentMapper */
-    protected $paymentMapper;
+    protected PaymentMapper $paymentMapper;
 
 
     public function __construct(PaymentsRepository $paymentsFacade, PaymentMapper $paymentMapper)
