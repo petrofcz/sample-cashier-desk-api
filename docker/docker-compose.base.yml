@@ -10,6 +10,8 @@ services:
     container_name: php
     environment:
       MONGO_URL: "mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongo"
+    depends_on:
+      - mongo
 
   apache:
     build:
@@ -18,7 +20,7 @@ services:
         APACHE_VERSION: ${APACHE_VERSION}
     depends_on:
       - php
-      - mongo
+      - swagger
     networks:
       - frontend
       - backend
@@ -34,6 +36,17 @@ services:
     networks:
       - backend
     container_name: mongo
+
+  swagger:
+    image: swaggerapi/swagger-ui
+    environment:
+      SWAGGER_JSON: /tmp/doc/openapi.yaml
+      PORT: 8080
+      URLS: "[ { url: \"./openapi.yaml\", name: \"CashDesk API\" } ]"
+    volumes:
+      - ../doc:/tmp/doc
+    networks:
+      - backend
 
 networks:
   frontend:

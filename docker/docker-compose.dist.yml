@@ -9,23 +9,13 @@ services:
       dockerfile: './docker/prod/apache/Dockerfile'
     logging:
       driver: none
-  swagger:
-    image: swaggerapi/swagger-ui
-    environment:
-      SWAGGER_JSON: /tmp/doc/openapi.yaml
-      PORT: 8080
-      URLS: "[ { url: \"./openapi.yaml\", name: \"CashDesk API\" } ]"
-    volumes:
-      - ../doc:/tmp/doc
-    networks:
-      - backend
-    logging:
-      driver: none
   mongo:
     logging:
       driver: none
     volumes:
       - mongo-data:/data/db
-
+  swagger:
+    logging:
+      driver: none
 volumes:
   mongo-data:

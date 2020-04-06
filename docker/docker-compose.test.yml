@@ -12,6 +12,8 @@ services:
   mongo:
     logging:
       driver: none
+  swagger:
+    image: 'havetisy/noop-run'    # disable swagger
   client:
     build:
       context: ../

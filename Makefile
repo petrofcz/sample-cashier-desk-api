@@ -4,7 +4,7 @@ help:		## 		Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//' | sed -e 's/:[ ]*[^ ]\+//'
 
 client: prod-build		## 		Run client simulation (tests)
-	docker-compose -f $(DC_BASE) -f docker/docker-compose.test.yml up --abort-on-container-exit --build
+	docker-compose -f $(DC_BASE) -f docker/docker-compose.test.yml up --build --abort-on-container-exit
 	docker-compose -f $(DC_BASE) -f docker/docker-compose.test.yml rm -fsv
 dist: prod-build		## 		Run production environment simulation. Visit http://localhost/ (also see generated docs at http://localhost/doc)
 	docker-compose -f $(DC_BASE) -f docker/docker-compose.dist.yml up --build
