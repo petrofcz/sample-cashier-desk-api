@@ -1,0 +1,25 @@
+# extends docker-compose.base.yml
+version: "3.7"
+services:
+  php:
+    build:
+      dockerfile: './docker/dev/php-fpm/Dockerfile'
+    environment:
+      DEBUG: 1
+    volumes:
+      - ../${APP_ROOT}/:/var/www/
+  apache:
+    build:
+      dockerfile: './docker/dev/apache/Dockerfile'
+    volumes:
+      - ../${APP_ROOT}/public/:/var/www/public/
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ADMIN_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ADMIN_PASSWORD}
+    networks:
+      - backend
+      - frontend

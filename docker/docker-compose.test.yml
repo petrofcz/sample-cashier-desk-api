@@ -1,0 +1,27 @@
+# extends docker-compose.base.yml
+version: "3.7"
+services:
+  php:
+    build:
+      dockerfile: './docker/prod/php-fpm/Dockerfile'
+  apache:
+    build:
+      dockerfile: './docker/prod/apache/Dockerfile'
+    logging:
+      driver: none
+  mongo:
+    logging:
+      driver: none
+  client:
+    build:
+      context: ../
+      dockerfile: './docker/client/Dockerfile'
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+    networks:
+      - frontend
+      - backend
+    container_name: client
+    command: dockerize -wait tcp://apache:80 -wait tcp://mongo:27017 -timeout 10s php /usr/src/vendor/bin/codecept run api --env docker
+    volumes:
+      - ./client/codeception-envs:/usr/src/tests/_envs
