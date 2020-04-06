@@ -11,6 +11,8 @@ info:
 tags:
   - name: payment
     description: Payment operations for your cash desk.
+servers:
+  - url: /api/v1
 paths:
   /payments:
     post:
@@ -53,6 +55,7 @@ paths:
           in: query
           description: Return only records that were uploaded after given date and time (inclusive). Information should be formatted according to RFC 3339.
           required: false
+          example: "2020-04-05T21:08:02Z"
           schema:
             type: string
             format: date-time
@@ -127,6 +130,7 @@ components:
           type: string
           format: date-time
           description: Date and time of the payment. Formatted according to RFC 3339.
+          example: "2020-04-05T21:08:02Z"
         amount:
           type: string
           pattern: '^\d{1,10}(\.\d{1,3})?$'
@@ -160,10 +164,6 @@ components:
       description: Service is unavailable.
     InternalError:
       description: Internal error of the system.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
     ValidationError:
       description: Validation error. Further description is provided in the response.
       content:
@@ -181,15 +181,15 @@ components:
     DuplicateConflict:
       description: "Resource has been already created and given data don't match."
       headers:
-        location:
+        x-location:
           $ref: '#/components/headers/location'
     DuplicateOk:
       description: "Resource has been already created with the same data."
       headers:
-        location:
+        x-location:
           $ref: '#/components/headers/location'
     Created:
       description: "Resource was successfully added."
       headers:
-        location:
+        x-location:
           $ref: '#/components/headers/location'
