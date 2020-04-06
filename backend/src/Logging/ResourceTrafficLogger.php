@@ -43,8 +43,12 @@ class ResourceTrafficLogger implements TrafficLoggerInterface
         $lines = [
             self::RES_PREFIX . $response->getStatusCode() . ' ' . $response->getReasonPhrase()
         ];
-        $body = $response->getBody()->getContents();
-        if($body) {
+        foreach($response->getHeaders() as $hdrName => $hdrVals) {
+            foreach($hdrVals as $hdrVal) {
+                $lines[] = self::RES_PREFIX . $hdrName . ': ' . $hdrVal;
+            }
+        }
+        if($body = ((string) $response->getBody())) {
             $lines[] = self::RES_PREFIX . $body;
         }
         fwrite($this->resource, implode("\n", $lines) . "\n\n");
